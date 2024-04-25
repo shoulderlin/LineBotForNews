@@ -55,22 +55,18 @@ def callback():
 
 @ handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    if event.message.text == '更新關鍵字':
-        kw = getKeyWord()
-        lineNotify(f'關鍵字已更新，共{len(kw)}個關鍵字')
-    else:
-        Tags =[]
-        for k in kw:
-            if k in event.message.text:
-                Tags.append(f'#{k}')
-        if len(Tags)>0:
-            Tags = ' '.join(Tags)
-            msg= f'''{datetime.now().strftime('%Y%m%d %H:%M')}
+    Tags =[]
+    for k in kw:
+        if k in event.message.text:
+            Tags.append(f'#{k}')
+    if len(Tags)>0:
+        Tags = ' '.join(Tags)
+        msg= f'''{datetime.now().strftime('%Y%m%d %H:%M')}
 {event.message.text}
 
 {Tags}
-            '''
-            lineNotify(msg)
+        '''
+        lineNotify(msg)
     # if event.message.text =='a':
         # msg = (TextSendMessage(text='這是測試'))
         # line_bot_api.reply_message(event.reply_token, msg)

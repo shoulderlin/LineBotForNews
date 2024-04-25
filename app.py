@@ -64,7 +64,9 @@ def handle_message(event):
             Tags.append(f'#{k}')
     if len(Tags)>0:
         Tags = ' '.join(Tags)
-        msg= f'''{datetime.now().replace(tzinfo=tz).strftime('%Y%m%d %H:%M')}
+        now = datetime.now()
+        now = now.replace(tzinfo=tz)
+        msg= f'''{now.strftime('%Y%m%d %H:%M')}
 {event.message.text}
 
 {Tags}

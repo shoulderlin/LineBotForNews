@@ -71,7 +71,7 @@ def handle_message(event):
 
 {Tags}
         '''
-        if len(msg)>890:
+        if len(msg)>=900:
             msg = '[擷取]' + msg[:900]
         lineNotify(msg)
     # if event.message.text =='a':

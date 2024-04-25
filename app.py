@@ -32,8 +32,8 @@ def lineNotify(msg):
 #     with open('kw.txt','r',encoding='utf8')as f:
 #         kw= f.read().split(',')
 #     return kw
-
-
+def containKeyWord(stringText,keyword):
+    return stringText.find(keyword) != -1
 
 app = Flask(__name__)
 
@@ -60,7 +60,7 @@ def callback():
 def handle_message(event):
     Tags =[]
     for k in kw:
-        if k in event.message.text:
+        if containKeyWord(event.message.text,k):
             Tags.append(f'#{k}')
     if len(Tags)>0:
         Tags = ' '.join(Tags)

@@ -11,9 +11,9 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 
 #tokens
-LineNotifyToken = os.environ.get['LineNotifyToken']
-ChannelAccessToken = os.environ.get['ChannelAccessToken']
-ChannelSecret = os.environ.get['ChannelSecret']
+LineNotifyToken = os.environ.get('LineNotifyToken')
+ChannelAccessToken = os.environ.get('ChannelAccessToken')
+ChannelSecret = os.environ.get('ChannelSecret')
 
 def lineNotify(msg):
     token = LineNotifyToken

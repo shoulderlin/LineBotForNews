@@ -8,13 +8,13 @@ from linebot.exceptions import (
 from linebot.models import *
 import requests,os
 from bs4 import BeautifulSoup
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
 #tokens
 LineNotifyToken = os.environ.get('LineNotifyToken')
 ChannelAccessToken = os.environ.get('ChannelAccessToken')
 ChannelSecret = os.environ.get('ChannelSecret')
-
+tz = timezone(timedelta(hours=8))
 kw = os.environ.get('KeyWord')
 kw = kw.split(',')
 
@@ -64,7 +64,7 @@ def handle_message(event):
             Tags.append(f'#{k}')
     if len(Tags)>0:
         Tags = ' '.join(Tags)
-        msg= f'''{datetime.now().strftime('%Y%m%d %H:%M')}
+        msg= f'''{datetime.now().replace(tzinfo=tz).strftime('%Y%m%d %H:%M')}
 {event.message.text}
 
 {Tags}

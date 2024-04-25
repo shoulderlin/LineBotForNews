@@ -71,7 +71,7 @@ def handle_message(event):
 {Tags}
         '''
         if len(msg)>1000:
-            msg = msg[:999]
+            msg = msg[:990]
         lineNotify(msg)
     # if event.message.text =='a':
         # msg = (TextSendMessage(text='這是測試'))

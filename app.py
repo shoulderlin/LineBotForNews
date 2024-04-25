@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 from flask import Flask, request, abort
 from linebot import (
     LineBotApi, WebhookHandler
@@ -65,13 +66,13 @@ def handle_message(event):
     if len(Tags)>0:
         Tags = ' '.join(Tags)
         now = datetime.now() + timedelta(hours=8)
-        msg= f'''{now.strftime('%Y%m%d %H:%M')}
+        msg= f'''{now.strftime('%m%d %H%M')}
 {event.message.text}
 
 {Tags}
         '''
-        if len(msg)>1000:
-            msg = msg[:990]
+        if len(msg)>890:
+            msg = '[擷取]' + msg[:900]
         lineNotify(msg)
     # if event.message.text =='a':
         # msg = (TextSendMessage(text='這是測試'))

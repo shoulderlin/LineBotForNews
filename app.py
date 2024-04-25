@@ -58,7 +58,7 @@ def callback():
 
 @ handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    lineNotify(event.message.text)
+    lineNotify(event.message.text[:900])
     Tags =[]
     for k in kw:
         if containKeyWord(event.message.text,k):
@@ -67,7 +67,7 @@ def handle_message(event):
         Tags = ' '.join(Tags)
         now = datetime.now() + timedelta(hours=8)
         msg= f'''{now.strftime('%Y%m%d %H:%M')}
-{event.message.text}
+{event.message.text[:900]}
 
 {Tags}
         '''

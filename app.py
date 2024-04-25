@@ -72,7 +72,7 @@ def handle_message(event):
 {Tags}'''
         if len(msg)>=950:
             msg= f'''[擷取]{now.strftime('%m%d %H%M')}
-{event.message.text[:900]}
+{event.message.text[:890]}...
 
 {Tags}'''
         lineNotify(msg)

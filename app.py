@@ -15,6 +15,9 @@ LineNotifyToken = os.environ.get('LineNotifyToken')
 ChannelAccessToken = os.environ.get('ChannelAccessToken')
 ChannelSecret = os.environ.get('ChannelSecret')
 
+kw = os.environ.get('KeyWord')
+kw = kw.split(',')
+
 def lineNotify(msg):
     token = LineNotifyToken
     url = "https://notify-api.line.me/api/notify"
@@ -30,8 +33,7 @@ def lineNotify(msg):
 #         kw= f.read().split(',')
 #     return kw
 
-kw = os.environ.get('KeyWord')
-kw = kw.split(',')
+
 
 app = Flask(__name__)
 

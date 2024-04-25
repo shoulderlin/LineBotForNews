@@ -58,6 +58,7 @@ def callback():
 
 @ handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    print(event.message.text)
     Tags =[]
     for k in kw:
         if containKeyWord(event.message.text,k):

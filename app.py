@@ -25,12 +25,13 @@ def lineNotify(msg):
     # files = {'imageFile': open(picURI, 'rb')}
     r = requests.post(url, headers = headers, params = payload)
     return r.status_code
-def getKeyWord():
-    with open('kw.txt','r',encoding='utf8')as f:
-        kw= f.read().split(',')
-    return kw
+# def getKeyWord():
+#     with open('kw.txt','r',encoding='utf8')as f:
+#         kw= f.read().split(',')
+#     return kw
 
-kw = getKeyWord()
+kw = os.environ.get('KeyWord')
+kw = kw.split(',')
 
 app = Flask(__name__)
 

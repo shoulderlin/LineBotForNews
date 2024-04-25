@@ -58,7 +58,6 @@ def callback():
 
 @ handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    lineNotify(event.message.text[:900])
     Tags =[]
     for k in kw:
         if containKeyWord(event.message.text,k):
@@ -67,10 +66,12 @@ def handle_message(event):
         Tags = ' '.join(Tags)
         now = datetime.now() + timedelta(hours=8)
         msg= f'''{now.strftime('%Y%m%d %H:%M')}
-{event.message.text[:900]}
+{event.message.text}
 
 {Tags}
         '''
+        if len(msg)>1000:
+            msg = msg[:999]
         lineNotify(msg)
     # if event.message.text =='a':
         # msg = (TextSendMessage(text='這是測試'))

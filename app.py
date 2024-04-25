@@ -69,10 +69,12 @@ def handle_message(event):
         msg= f'''{now.strftime('%m%d %H%M')}
 {event.message.text}
 
-{Tags}
-        '''
-        if len(msg)>=900:
-            msg = '[擷取]' + msg[:900]
+{Tags}'''
+        if len(msg)>=950:
+            msg= f'''[擷取]{now.strftime('%m%d %H%M')}
+{event.message.text[:900]}
+
+{Tags}'''
         lineNotify(msg)
     # if event.message.text =='a':
         # msg = (TextSendMessage(text='這是測試'))

@@ -10,7 +10,6 @@ from linebot.models import *
 import requests,os,urllib
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
-from apscheduler.schedulers.blocking import BlockingScheduler
 
 
 
@@ -42,35 +41,12 @@ def containKeyWord(stringText,keyword):
     return stringText.find(keyword) != -1
 
 
-sched = BlockingScheduler()
-
-# @sched.scheduled_job('interval', minutes=10)
-# @sched.scheduled_job('cron', day_of_week='0-6', minute='*/10')
-# def timed_job():
-#     # print('This job is run every ten minutes.')
-#     url = 'https://linebotfornews.onrender.com'
-#     conn = urllib.request.urlopen(url)
-        
-#     for key, value in conn.getheaders():
-#         print(key, value)
-
-# @sched.scheduled_job('cron', day_of_week='mon-fri', hour=17)
-# def scheduled_job():
-#     print('This job is run every weekday at 5pm.')
-
-sched.start()
-
-
 app = Flask(__name__)
 
 # Channel access token:(選取自己的機器人→Messaging API→Channel access token)
 line_bot_api = LineBotApi(ChannelAccessToken)
 # Channel secret:(選取自己的機器人→Basic settings→Channel secret)
 handler = WebhookHandler(ChannelSecret)
-
-@ app.route("/")
-def home():
-    return render_template("home.html")
 
 @ app.route("/callback", methods=['POST'])
 def callback():
@@ -110,5 +86,5 @@ def handle_message(event):
         # line_bot_api.reply_message(event.reply_token, msg)
 
 if __name__ == "__main__":
-    port = int(os.environ.get('PORT'))
+    port = int(os.environ.get('PORT',5050))
     app.run(host='0.0.0.0', port=port)

@@ -12,19 +12,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 from apscheduler.schedulers.blocking import BlockingScheduler
 
-sched = BlockingScheduler()
 
-@sched.scheduled_job('interval', minutes=10)
-def timed_job():
-    # print('This job is run every ten minutes.')
-    url = 'https://linebotfornews.onrender.com'
-    request.get(url)
-
-# @sched.scheduled_job('cron', day_of_week='mon-fri', hour=17)
-# def scheduled_job():
-#     print('This job is run every weekday at 5pm.')
-
-sched.start()
 
 
 
@@ -52,6 +40,23 @@ def lineNotify(msg):
 #     return kw
 def containKeyWord(stringText,keyword):
     return stringText.find(keyword) != -1
+
+
+sched = BlockingScheduler()
+
+@sched.scheduled_job('interval', minutes=10)
+def timed_job():
+    # print('This job is run every ten minutes.')
+    url = 'https://linebotfornews.onrender.com'
+    request.get(url)
+    lineNotify('訪問網站')
+
+# @sched.scheduled_job('cron', day_of_week='mon-fri', hour=17)
+# def scheduled_job():
+#     print('This job is run every weekday at 5pm.')
+
+sched.start()
+
 
 app = Flask(__name__)
 

@@ -1,5 +1,5 @@
 # -*- coding: utf8 -*-
-from flask import Flask, request, abort
+from flask import Flask, request, abort, render_template
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -10,6 +10,23 @@ from linebot.models import *
 import requests,os
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
+from apscheduler.schedulers.blocking import BlockingScheduler
+
+sched = BlockingScheduler()
+
+@sched.scheduled_job('interval', minutes=10)
+def timed_job():
+    # print('This job is run every ten minutes.')
+    url = 'https://linebotfornews.onrender.com'
+    request.get(url)
+
+# @sched.scheduled_job('cron', day_of_week='mon-fri', hour=17)
+# def scheduled_job():
+#     print('This job is run every weekday at 5pm.')
+
+sched.start()
+
+
 
 #tokens
 LineNotifyToken = os.environ.get('LineNotifyToken')
@@ -42,6 +59,10 @@ app = Flask(__name__)
 line_bot_api = LineBotApi(ChannelAccessToken)
 # Channel secret:(選取自己的機器人→Basic settings→Channel secret)
 handler = WebhookHandler(ChannelSecret)
+
+@ app.route("/")
+def home():
+    return render_template("home.html")
 
 @ app.route("/callback", methods=['POST'])
 def callback():

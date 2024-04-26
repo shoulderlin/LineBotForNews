@@ -7,7 +7,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import *
-import requests,os
+import requests,os,urllib
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 from apscheduler.schedulers.blocking import BlockingScheduler

@@ -45,14 +45,14 @@ def containKeyWord(stringText,keyword):
 sched = BlockingScheduler()
 
 # @sched.scheduled_job('interval', minutes=10)
-@sched.scheduled_job('cron', day_of_week='0-6', minute='*/10')
-def timed_job():
-    # print('This job is run every ten minutes.')
-    url = 'https://linebotfornews.onrender.com'
-    conn = urllib.request.urlopen(url)
+# @sched.scheduled_job('cron', day_of_week='0-6', minute='*/10')
+# def timed_job():
+#     # print('This job is run every ten minutes.')
+#     url = 'https://linebotfornews.onrender.com'
+#     conn = urllib.request.urlopen(url)
         
-    for key, value in conn.getheaders():
-        print(key, value)
+#     for key, value in conn.getheaders():
+#         print(key, value)
 
 # @sched.scheduled_job('cron', day_of_week='mon-fri', hour=17)
 # def scheduled_job():

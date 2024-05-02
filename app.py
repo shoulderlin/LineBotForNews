@@ -12,6 +12,15 @@ from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 
 
+# import gspread,json,io
+# from google.oauth2.service_account import Credentials
+# from google.colab import userdata,files
+# sheetUrl = 'https://docs.google.com/spreadsheets/d/1eTaynVYAtOs6qtEhIDWfV5Ch80juRYZ23Bbe03_M7Pk/edit#gid=0'
+# scopes = ["https://www.googleapis.com/auth/spreadsheets"]
+# CredjsonFile = '/etc/secrets/credentials.json'
+# creds = Credentials.from_service_account_file(CredjsonFile,scopes=scopes)
+# client = gspread.authorize(creds)
+
 
 
 

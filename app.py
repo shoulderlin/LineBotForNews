@@ -11,15 +11,20 @@ import requests,os,urllib
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 
+# import pygsheets
+# # GoogleSheet Connect!
+# gc = pygsheets.authorize(service_account_file='credentials.json')
+# survey_url = 'https://docs.google.com/spreadsheets/d/1eTaynVYAtOs6qtEhIDWfV5Ch80juRYZ23Bbe03_M7Pk/edit#gid=0'
+# sh = gc.open_by_url(survey_url)
+# targetROW = int(sh.worksheet_by_title('BK').get_value('A1'))
 
-# import gspread,json,io
-# from google.oauth2.service_account import Credentials
-# from google.colab import userdata,files
-# sheetUrl = 'https://docs.google.com/spreadsheets/d/1eTaynVYAtOs6qtEhIDWfV5Ch80juRYZ23Bbe03_M7Pk/edit#gid=0'
-# scopes = ["https://www.googleapis.com/auth/spreadsheets"]
-# CredjsonFile = '/etc/secrets/credentials.json'
-# creds = Credentials.from_service_account_file(CredjsonFile,scopes=scopes)
-# client = gspread.authorize(creds)
+# def putDataToGoogleSheet(dataList,targetROW):
+#     ws = sh.worksheet_by_title('工作表1')
+#     ws.update_values(crange=f'B{targetROW}:I{targetROW}',values=[dataList])
+#     return targetROW + 1
+
+
+
 
 
 
@@ -48,6 +53,7 @@ def lineNotify(msg):
 #     return kw
 def containKeyWord(stringText,keyword):
     return stringText.find(keyword) != -1
+
 
 
 app = Flask(__name__)

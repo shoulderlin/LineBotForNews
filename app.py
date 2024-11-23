@@ -33,9 +33,16 @@ from datetime import datetime, timedelta
 LineNotifyToken = os.environ.get('LineNotifyToken')
 ChannelAccessToken = os.environ.get('ChannelAccessToken')
 ChannelSecret = os.environ.get('ChannelSecret')
+TeleBotToken = os.environ.get('TeleBotToken')
+TeleChatId = os.environ.get('chat_id')
+
 
 kw = os.environ.get('KeyWord')
 kw = kw.split(',')
+def teleNotify(msg):
+    url = f'https://api.telegram.org/bot{TeleBotToken}/sendMessage?chat_id={TeleChatId}&text={msg}'
+    r = requests.get(url)
+    return
 
 def lineNotify(msg):
     token = LineNotifyToken
@@ -92,6 +99,7 @@ def handle_message(event):
             msg= f'''[擷取]{now.strftime('%m%d %H%M')} {Tags}
 {event.message.text[:890]}...'''
         lineNotify(msg)
+        teleNotify(msg)
     # if event.message.text =='a':
         # msg = (TextSendMessage(text='這是測試'))
         # line_bot_api.reply_message(event.reply_token, msg)

@@ -99,7 +99,7 @@ def handle_message(event):
             msg= f'''[擷取]{now.strftime('%m%d %H%M')} {Tags}
 {event.message.text[:890]}...'''
         lineNotify(msg)
-        teleNotify(msg)
+        teleNotify(msg.replace('\n','@@@'))
     # if event.message.text =='a':
         # msg = (TextSendMessage(text='這是測試'))
         # line_bot_api.reply_message(event.reply_token, msg)

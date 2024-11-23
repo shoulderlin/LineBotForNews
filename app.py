@@ -40,8 +40,13 @@ TeleChatId = os.environ.get('chat_id')
 kw = os.environ.get('KeyWord')
 kw = kw.split(',')
 def teleNotify(msg):
-    url = f'https://api.telegram.org/bot{TeleBotToken}/sendMessage?chat_id={TeleChatId}&text={msg}'
-    r = requests.get(url)
+    preload = {
+        'chat_id':TeleChatId,
+        'text':msg
+    }
+    #url = f'https://api.telegram.org/bot{TeleBotToken}/sendMessage?chat_id={TeleChatId}&text={msg}'
+    url = f'https://api.telegram.org/bot{TeleBotToken}/sendMessage'
+    r = requests.post(url,data=preload)
     return
 
 def lineNotify(msg):

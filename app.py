@@ -49,16 +49,16 @@ def teleNotify(msg):
     r = requests.post(url,data=preload)
     return
 
-def lineNotify(msg):
-    token = LineNotifyToken
-    url = "https://notify-api.line.me/api/notify"
-    headers = {
-        "Authorization": "Bearer " + token
-    }   
-    payload = {'message': msg}
-    # files = {'imageFile': open(picURI, 'rb')}
-    r = requests.post(url, headers = headers, params = payload)
-    return r.status_code
+# def lineNotify(msg):
+#     token = LineNotifyToken
+#     url = "https://notify-api.line.me/api/notify"
+#     headers = {
+#         "Authorization": "Bearer " + token
+#     }   
+#     payload = {'message': msg}
+#     # files = {'imageFile': open(picURI, 'rb')}
+#     r = requests.post(url, headers = headers, params = payload)
+#     return r.status_code
 # def getKeyWord():
 #     with open('kw.txt','r',encoding='utf8')as f:
 #         kw= f.read().split(',')
@@ -101,10 +101,10 @@ def handle_message(event):
         msg= f'''{now.strftime('%m%d %H%M')}  {Tags}
 {event.message.text}'''
         teleNotify('【TFDA輿情監控】'+msg)
-        if len(msg)>=950:
-            msg= f'''[擷取]{now.strftime('%m%d %H%M')} {Tags}
-{event.message.text[:890]}...'''
-        lineNotify(msg)
+#         if len(msg)>=950:
+#             msg= f'''[擷取]{now.strftime('%m%d %H%M')} {Tags}
+# {event.message.text[:890]}...'''
+#         lineNotify(msg)
         
     # if event.message.text =='a':
         # msg = (TextSendMessage(text='這是測試'))

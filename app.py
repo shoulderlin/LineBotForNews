@@ -63,8 +63,12 @@ def teleNotify(msg):
 #     with open('kw.txt','r',encoding='utf8')as f:
 #         kw= f.read().split(',')
 #     return kw
-def containKeyWord(stringText,keyword):
-    return stringText.find(keyword) != -1
+# def containKeyWord(stringText,keyword):
+#     if keyword in stringText:
+#         return True
+#     else:
+#         return False
+    #return stringText.find(keyword) != -1
 
 
 
@@ -93,7 +97,7 @@ def callback():
 def handle_message(event):
     Tags =[]
     for k in kw:
-        if containKeyWord(event.message.text,k):
+        if k in event.message.text:
             Tags.append(f'#{k}')
     if len(Tags)>0:
         Tags = ' '.join(Tags)

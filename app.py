@@ -35,7 +35,8 @@ ChannelAccessToken = os.environ.get('ChannelAccessToken')
 ChannelSecret = os.environ.get('ChannelSecret')
 TeleBotToken = os.environ.get('TeleBotToken')
 TeleChatId = os.environ.get('chat_id')
-
+WaTeleBotToken = os.environ.get('WaTeleBotToken')
+WaChatId = os.environ.get('WaChatId')
 
 kw = os.environ.get('KeyWord')
 kw = kw.split(',')
@@ -46,6 +47,16 @@ def teleNotify(msg):
     }
     #url = f'https://api.telegram.org/bot{TeleBotToken}/sendMessage?chat_id={TeleChatId}&text={msg}'
     url = f'https://api.telegram.org/bot{TeleBotToken}/sendMessage'
+    r = requests.post(url,data=preload)
+    return
+
+def WteleNotify(msg):
+    preload = {
+        'chat_id':WaChatId,
+        'text':msg
+    }
+    #url = f'https://api.telegram.org/bot{TeleBotToken}/sendMessage?chat_id={TeleChatId}&text={msg}'
+    url = f'https://api.telegram.org/bot{WaTeleBotToken}/sendMessage'
     r = requests.post(url,data=preload)
     return
 
@@ -105,6 +116,8 @@ def handle_message(event):
         msg= f'''{now.strftime('%m%d %H%M')}  {Tags}
 {event.message.text}'''
         teleNotify('【TFDA輿情監控】'+msg)
+    if '里仁' in event.message.text:
+        WteleNotify(f'【TFDA輿情監控】{now.strftime('%m%d %H%M'}\n{event.message.text}'+msg)
 #         if len(msg)>=950:
 #             msg= f'''[擷取]{now.strftime('%m%d %H%M')} {Tags}
 # {event.message.text[:890]}...'''

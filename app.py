@@ -116,7 +116,7 @@ def handle_message(event):
         msg= f'''{now.strftime('%m%d %H%M')}  {Tags}
 {event.message.text}'''
         teleNotify('【TFDA輿情監控】'+msg)
-    for x in '里仁'.split(','):
+    for x in '里仁,慈心'.split(','):
         if x in event.message.text:
             WteleNotify(f'【輿情監控】{now.strftime("%m%d %H%M")}\n{event.message.text}')
 #         if len(msg)>=950:

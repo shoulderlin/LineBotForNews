@@ -118,6 +118,7 @@ def handle_message(event):
         teleNotify('【TFDA輿情監控】'+msg)
     for x in '里仁,慈心'.split(','):
         if x in event.message.text:
+            now = datetime.now() + timedelta(hours=8)
             WteleNotify(f'【輿情監控】{now.strftime("%m%d %H%M")}\n{event.message.text}')
 #         if len(msg)>=950:
 #             msg= f'''[擷取]{now.strftime('%m%d %H%M')} {Tags}

@@ -116,7 +116,7 @@ def handle_message(event):
         msg= f'''{now.strftime('%m%d %H%M')}  {Tags}
 {event.message.text}'''
         teleNotify('【TFDA輿情監控】'+msg)
-    for x in '里仁,慈心'.split(','):
+    for x in '里仁,慈心,食品,化妝品,化粧品'.split(','):
         if x in event.message.text:
             now = datetime.now() + timedelta(hours=8)
             WteleNotify(f'【輿情監控】{now.strftime("%m%d %H%M")}\n{event.message.text}')
